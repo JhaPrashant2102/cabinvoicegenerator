@@ -48,4 +48,31 @@ public class InvoiceServiceTest {
 		InvoiceSummary checkSummary = new InvoiceSummary(2,30.0);
 		Assert.assertEquals(summary,checkSummary);
 	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void givenUserIdShouldReturnTheListOfRides() {
+		RideRepository rideRepository = new RideRepository();
+		String id = "123";
+		Ride[] rides = {
+				new Ride(2.0,5),
+				new Ride(0.1,1)
+		};
+		rideRepository.insertNewRider(id,rides);
+		Assert.assertEquals(rides,rideRepository.ridemap.get("123"));
+	}
+	
+	@Test
+	public void givenUserIdShouldReturnTheInvoice() {
+		RideRepository rideRepository = new RideRepository();
+		String id = "123";
+		Ride[] rides = {
+				new Ride(2.0,5),
+				new Ride(0.1,1)
+		};
+		rideRepository.insertNewRider(id,rides);
+		InvoiceSummary summary = invoiceGenerator.returnRideSummary(rideRepository.ridemap.get("123"));
+		InvoiceSummary checkSummary = new InvoiceSummary(2,30.0);
+		Assert.assertEquals(summary,checkSummary);
+	}
 }

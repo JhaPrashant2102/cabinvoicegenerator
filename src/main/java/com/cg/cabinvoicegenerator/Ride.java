@@ -21,5 +21,21 @@ public class Ride {
 		this.time = time;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ride other = (Ride) obj;
+		if (Double.doubleToLongBits(distance) != Double.doubleToLongBits(other.distance))
+			return false;
+		if (Double.doubleToLongBits(time) != Double.doubleToLongBits(other.time))
+			return false;
+		return true;
+	}
+
 
 }
